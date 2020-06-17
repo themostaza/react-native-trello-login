@@ -12,7 +12,8 @@
  *   an "AUTH_FAILURE" message is sent instead.
  */
 import * as React from "react";
-import { WebView, StyleSheet } from "react-native";
+import { StyleSheet } from "react-native";
+import { WebView } from "react-native-webview";
 import PropTypes from "prop-types";
 import trelloLoginWebsiteHtml from "./trelloLoginWebsite.html";
 
@@ -23,7 +24,7 @@ class TrelloLogin extends React.Component {
     onLoginFailure: PropTypes.func.isRequired,
     onLoginSuccess: PropTypes.func.isRequired,
     style: PropTypes.any,
-    trelloApiKey: PropTypes.string.isRequired
+    trelloApiKey: PropTypes.string.isRequired,
   };
 
   webViewRef;
@@ -34,12 +35,12 @@ class TrelloLogin extends React.Component {
     }
   };
 
-  handleWebViewMessage = e => {
+  handleWebViewMessage = (e) => {
     const {
       applicationName,
       onLoginFailure,
       onLoginSuccess,
-      trelloApiKey
+      trelloApiKey,
     } = this.props;
     let data;
     try {
@@ -55,7 +56,7 @@ class TrelloLogin extends React.Component {
         const message = {
           type: "AUTHORIZE",
           trelloApiKey: trelloApiKey,
-          applicationName: applicationName
+          applicationName: applicationName,
         };
         this.webViewRef.postMessage(JSON.stringify(message));
       }
@@ -83,7 +84,7 @@ class TrelloLogin extends React.Component {
     return (
       <WebView
         style={[styles.webView, style]}
-        ref={ref => (this.webViewRef = ref)}
+        ref={(ref) => (this.webViewRef = ref)}
         source={trelloLoginWebsiteHtml}
         onMessage={this.handleWebViewMessage}
         javaScriptEnabled
@@ -95,8 +96,8 @@ class TrelloLogin extends React.Component {
 
 const styles = StyleSheet.create({
   webView: {
-    flex: 1
-  }
+    flex: 1,
+  },
 });
 
 export default TrelloLogin;
