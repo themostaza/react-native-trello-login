@@ -1,8 +1,8 @@
 <html>
 
 <head>
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
   <script src="https://api.trello.com/1/client.js"></script>
 </head>
 
@@ -14,7 +14,7 @@
     // https://github.com/facebook/react-native/issues/18120
     var sendToReactNative = function (data) {
       setTimeout(function () {
-        window.postMessage(JSON.stringify(data), "*");
+        window.ReactNativeWebView.postMessage(JSON.stringify(data), "*");
       }, 0);
     };
 

@@ -15,7 +15,7 @@ import * as React from "react";
 import { StyleSheet } from "react-native";
 import { WebView } from "react-native-webview";
 import PropTypes from "prop-types";
-import trelloLoginWebsiteHtml from "./trelloLoginWebsite.html";
+const trelloLoginWebsiteHtml = require("./trelloLoginWebsite.html");
 
 class TrelloLogin extends React.Component {
   static propTypes = {
@@ -83,6 +83,7 @@ class TrelloLogin extends React.Component {
     } = this.props;
     return (
       <WebView
+        originWhitelist={["*"]}
         style={[styles.webView, style]}
         ref={(ref) => (this.webViewRef = ref)}
         source={trelloLoginWebsiteHtml}
